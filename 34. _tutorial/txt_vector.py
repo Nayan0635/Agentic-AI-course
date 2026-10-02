@@ -14,7 +14,7 @@ client = OpenAI(
 #Create Chromadb vector database
 chroma_client = chromadb.PersistentClient(path="./chroma_db")
 #Create a collection where we need to store the vector data.
-collection = chroma_client.get_collection(name="company_documents")
+collection = chroma_client.get_or_create_collection(name="company_documents")
 
 text=""
 #fetching from .txt file 
@@ -23,7 +23,7 @@ with open("./documents/ejob.txt","r+") as file:
     text = file.read()
     file.close()
     '''remove file.close() — "with" already handles closing automatically.'''
-# print(text)
+print(text)
 
 #Create the embeddings 
 responses = client.embeddings.create(
@@ -33,7 +33,7 @@ responses = client.embeddings.create(
 embedding = responses.data[0].embedding
 # print(embedding)
 #We need to store these vectors inside the collection of the chromadb.
-collection.add(
+collection.upsert(
     ids=['doc1'],
     embeddings=[embedding],
     documents=[text]

@@ -10,11 +10,11 @@ client = OpenAI(
 #Connect to ChromaDB
 chroma_client = chromadb.PersistentClient(path="./chroma_db")
 collection = chroma_client.get_collection(name="company_documents")
-print("Collection loaded")
+# print("Collection loaded")
 
 #ChatLoop
 while True:
-    user_input = input("Ask About Ejobindia only ?")
+    user_input = input("Ask About Ejobindia only: ")
     if user_input.strip().lower() == "exit":
         print("Agent : Bye Bye")
 
@@ -30,7 +30,7 @@ while True:
     )
     #Get the relavant documents
     context = "\n".join(result['documents'][0])
-    print("Rag Context :",context)
+    # print("Rag Context :",context)
     #Now sending this context to llm
     responses= client.chat.completions.create(
         model="gpt-4.1-mini",

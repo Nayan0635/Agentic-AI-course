@@ -1,4 +1,4 @@
-'''python -m streamlit run txt_stream.py'''
+# python -m streamlit run txt_stream.py
 import streamlit as st
 from openai import OpenAI
 from dotenv import load_dotenv
@@ -11,7 +11,7 @@ client = OpenAI(
 chroma_client = chromadb.PersistentClient(path="./chroma_db")
 collection = chroma_client.get_collection(name="company_documents")
 st.title("TXT RAG OpenAI")
-user_input = st.text_input("Ask about EjobIndia only")
+user_input = st.text_input("Ask about EjobIndia")
 if st.button("Ask"):
     if user_input:
         # Create query embedding

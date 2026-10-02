@@ -5,14 +5,15 @@ import os
 import chromadb
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 load_dotenv()
+
 client = genai.Client(
     api_key=os.getenv("GEMINI_API_KEY")
 )
-print("Gemini connected")
+
 csv_file = "./documents/space_missions.csv"
 df = pd.read_csv(csv_file)
 csv_data = df.to_string(index=False)
-print("CSV loaded")
+
 text_splitter = RecursiveCharacterTextSplitter(
     chunk_size=500,
     chunk_overlap=50
@@ -21,7 +22,7 @@ chunks = text_splitter.split_text(csv_data)
 # if not chunks:
 #     raise ValueError("The CSV file contains no data; no chunks were created.")
 chroma_client = chromadb.PersistentClient(path="./chroma_db")
-collection = chroma_client.get_collection(name="csv_documents")
+collection = chroma_client.get_or_create_collection(name="csv_documents")
 
 response = client.models.embed_content(
     model="gemini-embedding-001",

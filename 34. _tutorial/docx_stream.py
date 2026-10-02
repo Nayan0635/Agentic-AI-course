@@ -1,10 +1,11 @@
+# python -m streamlit run docx_stream.py
 import streamlit as st
 from google import genai
 from dotenv import load_dotenv
 import os
 import chromadb
 load_dotenv()
-# Gemini
+
 client = genai.Client(
     api_key=os.getenv("GEMINI_API_KEY")
 )

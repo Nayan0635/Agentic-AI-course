@@ -24,7 +24,7 @@ if not chunks:
     raise ValueError("The Excel file contains no data; no chunks were created.")
 # ChromaDB
 chroma_client = chromadb.PersistentClient(path="./chroma_db")
-collection = chroma_client.get_collection(name="excel_documents")
+collection = chroma_client.get_or_create_collection(name="excel_documents")
 # Create Embedding
 response = client.models.embed_content(
     model="gemini-embedding-001",

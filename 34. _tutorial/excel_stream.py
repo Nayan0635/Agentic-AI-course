@@ -1,3 +1,4 @@
+# python -m streamlit run excel_stream.py
 import streamlit as st
 from google import genai
 from dotenv import load_dotenv
@@ -14,7 +15,7 @@ collection = chroma_client.get_collection(name="excel_documents")
 # Streamlit UI
 st.title("Excel RAG Agent")
 user_input = st.text_input(
-    "Ask something about the Excel data"
+    "Ask report about retail sales"
 )
 if st.button("Submit"):
     if user_input:

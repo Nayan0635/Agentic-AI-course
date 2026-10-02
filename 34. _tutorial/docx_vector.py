@@ -10,13 +10,13 @@ client = genai.Client(
     api_key=os.getenv("GEMINI_API_KEY")
 )
 # Read DOCX
-doc = Document("./documents/document.docx")
+doc = Document("./documents/urban_gardening.docx")
 text = "\n".join(
     paragraph.text
     for paragraph in doc.paragraphs
     if paragraph.text.strip()
 )
-print("DOCX loaded")
+
 text_splitter = RecursiveCharacterTextSplitter(
     chunk_size=500,
     chunk_overlap=50
@@ -26,14 +26,14 @@ if not chunks:
     raise ValueError("The DOCX file contains no text; no chunks were created.")
 # ChromaDB
 chroma_client = chromadb.PersistentClient(path="./chroma_db")
-collection = chroma_client.get_collection(name="docx_documents")
+collection = chroma_client.get_or_create_collection(name="docx_documents")
 # Create Embedding
 response = client.models.embed_content(
     model="gemini-embedding-001",
     contents=chunks
 )
 embeddings = [item.values for item in response.embeddings]
-source = "document.docx"
+source = "urban_gardening.docx"
 collection.add(
     ids=[f"docx_{i}" for i in range(len(chunks))],
     embeddings=embeddings,

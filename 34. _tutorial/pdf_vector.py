@@ -8,13 +8,12 @@ load_dotenv()
 client = genai.Client(
     api_key=os.getenv("GEMINI_API_KEY")
 )
-print("Gemini connected")
 pdf_file = "./documents/ejob.pdf"
 reader = PdfReader(pdf_file)
 text = ""
 for page in reader.pages:
     text += page.extract_text() + "\n"
-print("PDF loaded")
+
 text_splitter = RecursiveCharacterTextSplitter(
     chunk_size=500,
     chunk_overlap=50
@@ -24,7 +23,7 @@ chunks = text_splitter.split_text(text)
 #     raise ValueError("The PDF contains no extractable text; no chunks were created.")
 
 chroma_client = chromadb.PersistentClient(path="./chroma_db")
-collection = chroma_client.get_collection(name="pdf_documents")
+collection = chroma_client.get_or_create_collection(name="pdf_documents")
 
 response = client.models.embed_content(
     model="gemini-embedding-001",
