@@ -11,7 +11,7 @@ client = genai.Client(
 )
 # ChromaDB
 chroma_client = chromadb.PersistentClient(path="./chroma_db")
-collection = chroma_client.get_collection(name="excel_documents")
+collection = chroma_client.get_or_create_collection(name="excel_documents")
 # Streamlit UI
 st.title("Excel RAG Agent")
 user_input = st.text_input(

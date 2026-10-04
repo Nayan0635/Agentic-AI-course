@@ -9,7 +9,7 @@ client = genai.Client(
     api_key=os.getenv("GEMINI_API_KEY")
 )
 chroma_client = chromadb.PersistentClient(path="./chroma_db")
-collection = chroma_client.get_collection(name="pdf_documents")
+collection = chroma_client.get_or_create_collection(name="pdf_documents")
 
 st.title("PDF RAG Gemini")
 user_input = st.text_input("Ask something about the PDF")

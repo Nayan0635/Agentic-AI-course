@@ -33,8 +33,8 @@ response = client.models.embed_content(
     contents=chunks
 )
 embeddings = [item.values for item in response.embeddings]
-source = "urban_gardening.docx"
-collection.add(
+collection.delete(where={"source": "urban_gardening.docx"})
+collection.upsert(
     ids=[f"docx_{i}" for i in range(len(chunks))],
     embeddings=embeddings,
     documents=chunks,

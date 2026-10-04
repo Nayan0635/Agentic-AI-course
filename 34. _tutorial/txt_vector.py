@@ -33,7 +33,7 @@ responses = client.embeddings.create(
 embedding = responses.data[0].embedding
 # print(embedding)
 #We need to store these vectors inside the collection of the chromadb.
-collection.upsert(
+collection.add(
     ids=['doc1'],
     embeddings=[embedding],
     documents=[text]

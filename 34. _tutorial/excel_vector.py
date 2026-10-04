@@ -9,12 +9,12 @@ load_dotenv()
 client = genai.Client(
     api_key=os.getenv("GEMINI_API_KEY")
 )
-print("Gemini connected")
+# print("Gemini connected")
 # Read Excel
 excel_file = "./documents/retail_sales.xlsx"
 df = pd.read_excel(excel_file)
 excel_data = df.to_string(index=False)
-print("Excel loaded")
+# print("Excel loaded")
 text_splitter = RecursiveCharacterTextSplitter(
     chunk_size=500,
     chunk_overlap=50
@@ -31,9 +31,7 @@ response = client.models.embed_content(
     contents=chunks
 )
 embeddings = [item.values for item in response.embeddings]
-source = "retail_sales.xlsx"
-collection.delete(where={"source": source})
-collection.delete(ids=["excel1"])
+collection.delete(where={"source": "retail_sales.xlsx"})
 collection.upsert(
     ids=[f"excel_{i}" for i in range(len(chunks))],
     embeddings=embeddings,

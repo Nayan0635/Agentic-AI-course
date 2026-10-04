@@ -11,7 +11,7 @@ client = genai.Client(
 )
 # ChromaDB
 chroma_client = chromadb.PersistentClient(path="./chroma_db")
-collection = chroma_client.get_collection(name="docx_documents")
+collection = chroma_client.get_or_create_collection(name="docx_documents")
 
 # Streamlit UI
 st.title("DOCX RAG Agent")

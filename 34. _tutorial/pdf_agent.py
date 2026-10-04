@@ -6,12 +6,12 @@ load_dotenv()
 client = genai.Client(
     api_key=os.getenv("GEMINI_API_KEY")
 )
-print("Gemini connected")
+# print("Gemini connected")
 chroma_client = chromadb.PersistentClient(path="./chroma_db")
-collection = chroma_client.get_collection(name="pdf_documents")
-print("Collection loaded")
+collection = chroma_client.get_or_create_collection(name="pdf_documents")
+# print("Collection loaded")
 while True:
-    user_input = input("Ask about the PDF: ")
+    user_input = input("Ask about the Ejob India: ")
     if user_input.strip().lower() == "exit":
         print("Agent: Bye Bye")
         break

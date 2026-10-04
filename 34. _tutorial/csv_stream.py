@@ -9,7 +9,7 @@ client = genai.Client(
     api_key=os.getenv("GEMINI_API_KEY")
 )
 chroma_client = chromadb.PersistentClient(path="./chroma_db")
-collection = chroma_client.get_collection(name="csv_documents")
+collection = chroma_client.get_or_create_collection(name="csv_documents")
 
 st.title("CSV RAG Gemini")
 user_input = st.text_input("Ask something about the space missions")

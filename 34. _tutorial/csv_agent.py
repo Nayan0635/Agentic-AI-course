@@ -8,7 +8,7 @@ client = genai.Client(
 )
 print("Gemini connected")
 chroma_client = chromadb.PersistentClient(path="./chroma_db")
-collection = chroma_client.get_collection(name="csv_documents")
+collection = chroma_client.get_or_create_collection(name="csv_documents")
 
 print("Collection loaded")
 while True:

@@ -9,7 +9,7 @@ client = OpenAI(
 )
 #Connect to ChromaDB
 chroma_client = chromadb.PersistentClient(path="./chroma_db")
-collection = chroma_client.get_collection(name="company_documents")
+collection = chroma_client.get_or_create_collection(name="company_documents")
 # print("Collection loaded")
 
 #ChatLoop

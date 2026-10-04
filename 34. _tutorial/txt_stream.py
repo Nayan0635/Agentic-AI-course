@@ -9,7 +9,7 @@ client = OpenAI(
     api_key=os.getenv("OPENAI_API_KEY")
 )
 chroma_client = chromadb.PersistentClient(path="./chroma_db")
-collection = chroma_client.get_collection(name="company_documents")
+collection = chroma_client.get_or_create_collection(name="company_documents")
 st.title("TXT RAG OpenAI")
 user_input = st.text_input("Ask about EjobIndia")
 if st.button("Ask"):

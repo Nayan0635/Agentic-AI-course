@@ -29,8 +29,8 @@ response = client.models.embed_content(
     contents=chunks
 )
 embeddings = [item.values for item in response.embeddings]
-source = "space_missions.csv"
-collection.add(
+collection.delete(where={"source": "space_missions.csv"})
+collection.upsert(
     ids=[f"csv_{i}" for i in range(len(chunks))],
     embeddings=embeddings,
     documents=chunks,

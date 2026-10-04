@@ -10,12 +10,12 @@ client = genai.Client(
 print("Gemini connected")
 # ChromaDB
 chroma_client = chromadb.PersistentClient(path="./chroma_db")
-collection = chroma_client.get_collection(name="docx_documents")
+collection = chroma_client.get_or_create_collection(name="docx_documents")
 
 print("Collection loaded")
 # Chat Loop
 while True:
-    user_input = input("Ask about the DOCX: ")
+    user_input = input("Ask about the urban gardening guide: ")
     if user_input.strip().lower() == "exit":
         print("Agent: Bye Bye")
         break

@@ -30,8 +30,8 @@ response = client.models.embed_content(
     contents=chunks
 )
 embeddings = [item.values for item in response.embeddings]
-source = "data.pdf"
-collection.add(
+collection.delete(where={"source": "ejob.pdf"})
+collection.upsert(
     ids=[f"pdf_{i}" for i in range(len(chunks))],
     embeddings=embeddings,
     documents=chunks,

@@ -9,11 +9,11 @@ client = genai.Client(
 )
 # ChromaDB
 chroma_client = chromadb.PersistentClient(path="./chroma_db")
-collection = chroma_client.get_collection(name="excel_documents")
+collection = chroma_client.get_or_create_collection(name="excel_documents")
 print("Collection loaded")
 # Chat Loop
 while True:
-    user_input = input("Ask about the Excel data: ")
+    user_input = input("Ask about sales reports: ")
     if user_input.strip().lower() == "exit":
         print("Agent: Bye Bye")
         break
@@ -33,7 +33,7 @@ while True:
     # Get relevant Excel data
     documents = result.get("documents") or [[]]
     context = "\n".join(documents[0]) if documents and documents[0] else "No relevant context found."
-    print("\nRAG Context:", context)
+    # print("\nRAG Context:", context)
     # Ask Gemini
     response = client.models.generate_content(
         model="gemini-3.1-flash-lite",
