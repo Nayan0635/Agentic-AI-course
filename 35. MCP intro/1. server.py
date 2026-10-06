@@ -1,9 +1,6 @@
-#loading the FastMCP class
-# from mcp.server.fastmcp import FastMCP
-from mcp.server.mcpserver import MCPServer
+'''mcp v2 code'''
 
-#Create an object of the FastMCP 
-# mcp = FastMCP()
+from mcp.server import MCPServer
 mcp = MCPServer()
 
 #expose a tool using decorator
@@ -14,5 +11,4 @@ def addNumbers(a:int,b:int)->int:
 
 #Running the server in background
 if __name__ == "__main__":
-    # print("MCP server is running")
     mcp.run()

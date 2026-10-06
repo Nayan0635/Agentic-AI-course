@@ -3,8 +3,6 @@ from dotenv import load_dotenv
 import os
 import json
 import asyncio
-# # from mcp.client.session import ClientSession
-# # from mcp.client.stdio import stdio_client,StdioServerParameters
 from mcp import Client, StdioServerParameters
 load_dotenv()
 
@@ -47,7 +45,7 @@ async def callAgent():
                 tools=openai_tools
             )
             message = response.choices[0].message
-            # Check whether AI called a tool
+            
             if message.tool_calls:
                 tool_call = message.tool_calls[0]
                 toolName = tool_call.function.name
