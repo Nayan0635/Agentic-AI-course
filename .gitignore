@@ -22,12 +22,14 @@ __pycache__/
 *.xlsx
 *.docx
 
+# database
+chroma*/
+
 # Test folders
 14.*
 14.*/
 28.*
 28.*/
 33. _tutorial/
-# 34. _tutorial/
 
 *.txt 
