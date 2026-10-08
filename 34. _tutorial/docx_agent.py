@@ -9,7 +9,7 @@ client = genai.Client(
 )
 print("Gemini connected")
 # ChromaDB
-chroma_client = chromadb.PersistentClient(path="./chroma_db")
+chroma_client = chromadb.PersistentClient(path="./chromaDB")
 collection = chroma_client.get_or_create_collection(name="docx_documents")
 
 print("Collection loaded")

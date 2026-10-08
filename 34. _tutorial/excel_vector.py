@@ -23,7 +23,7 @@ chunks = text_splitter.split_text(excel_data)
 if not chunks:
     raise ValueError("The Excel file contains no data; no chunks were created.")
 # ChromaDB
-chroma_client = chromadb.PersistentClient(path="./chroma_db")
+chroma_client = chromadb.PersistentClient(path="./chromaDB")
 collection = chroma_client.get_or_create_collection(name="excel_documents")
 # Create Embedding
 response = client.models.embed_content(

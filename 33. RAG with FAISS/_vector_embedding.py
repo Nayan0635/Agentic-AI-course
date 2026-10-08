@@ -22,5 +22,5 @@ chunks = text_splitter.split_text(text) # becomes list of strings
 
 vector_store = FAISS.from_texts(chunks, embeddings) #embedding complete
 # print(vector_store)
-vector_store.save_local(folder_path = "./VectorDB")
+vector_store.save_local(folder_path = "./faissDB")
 print("Vector Embedding succefully created.")

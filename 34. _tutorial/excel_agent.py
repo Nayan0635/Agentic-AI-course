@@ -8,7 +8,7 @@ client = genai.Client(
     api_key=os.getenv("GEMINI_API_KEY")
 )
 # ChromaDB
-chroma_client = chromadb.PersistentClient(path="./chroma_db")
+chroma_client = chromadb.PersistentClient(path="./chromaDB")
 collection = chroma_client.get_or_create_collection(name="excel_documents")
 print("Collection loaded")
 # Chat Loop

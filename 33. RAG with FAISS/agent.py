@@ -13,7 +13,7 @@ llm = ChatOpenAI(
 )
 
 vector_store = FAISS.load_local(
-    "./VectorDB",
+    "./faissDB",
     embeddings,
     allow_dangerous_deserialization=True
 ) # local vector db loaded

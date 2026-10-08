@@ -23,7 +23,8 @@ __pycache__/
 *.docx
 
 # database
-chroma*/
+**/chromaDB*/
+**/faissDB*/
 
 # Test folders
 14.*

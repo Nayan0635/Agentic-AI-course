@@ -8,7 +8,7 @@ client = OpenAI(
     api_key=os.getenv("OPENAI_API_KEY")
 )
 #Connect to ChromaDB
-chroma_client = chromadb.PersistentClient(path="./chroma_db")
+chroma_client = chromadb.PersistentClient(path="./chromaDB")
 collection = chroma_client.get_or_create_collection(name="company_documents")
 # print("Collection loaded")
 

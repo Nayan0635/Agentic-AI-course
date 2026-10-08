@@ -21,7 +21,7 @@ text_splitter = RecursiveCharacterTextSplitter(
 chunks = text_splitter.split_text(csv_data)
 # if not chunks:
 #     raise ValueError("The CSV file contains no data; no chunks were created.")
-chroma_client = chromadb.PersistentClient(path="./chroma_db")
+chroma_client = chromadb.PersistentClient(path="./chromaDB")
 collection = chroma_client.get_or_create_collection(name="csv_documents")
 
 response = client.models.embed_content(

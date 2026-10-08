@@ -22,7 +22,7 @@ chunks = text_splitter.split_text(text)
 # if not chunks:
 #     raise ValueError("The PDF contains no extractable text; no chunks were created.")
 
-chroma_client = chromadb.PersistentClient(path="./chroma_db")
+chroma_client = chromadb.PersistentClient(path="./chromaDB")
 collection = chroma_client.get_or_create_collection(name="pdf_documents")
 
 response = client.models.embed_content(

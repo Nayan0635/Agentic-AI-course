@@ -12,16 +12,15 @@ client = OpenAI(
 # print("OpenAI connected")
 
 #Create Chromadb vector database
-chroma_client = chromadb.PersistentClient(path="./chroma_db")
+chroma_client = chromadb.PersistentClient(path="./chromaDB")
 #Create a collection where we need to store the vector data.
 collection = chroma_client.get_or_create_collection(name="company_documents")
 
 text=""
 #fetching from .txt file 
 '''remove "r+" (write mode not needed, can corrupt file). Use "r" only.'''
-with open("./documents/ejob.txt","r+") as file: 
+with open("./documents/ejob.txt","r") as file: 
     text = file.read()
-    file.close()
     '''remove file.close() — "with" already handles closing automatically.'''
 print(text)
 
