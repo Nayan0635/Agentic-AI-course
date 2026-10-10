@@ -1,4 +1,4 @@
-'''mcp v1 code'''
+'''mcp v2 code'''
 from mcp import Client,StdioServerParameters
 import asyncio
 
