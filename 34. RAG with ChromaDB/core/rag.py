@@ -1,23 +1,18 @@
-from core import embedder, llm
-from core.vector_store import collection
+
+from core import embedder, llm, vector_store
 
 
-def answer(question: str, n_results: int = 3) -> str:
+def answer(question: str, n_results: int = 5) -> str:
     q_emb = embedder.embed(question)
+    hits = vector_store.query(q_emb, n=n_results)
 
-    result = collection.query(
-        query_embeddings=[q_emb],
-        n_results=n_results,
+    if not hits:
+        return "I don't know (no documents ingested yet)."
+
+    # Build context with citation tags the LLM can reuse
+    context = "\n\n---\n\n".join(
+        f"[{h['source']} § {h['chunk']}]\n{h['text']}"
+        for h in hits
     )
-    context = "\n\n---\n\n".join(result["documents"][0])
 
     return llm.ask(context, question)
-
-
-
-# from core import embedder, vector_store, llm
-
-# def answer(question: str, n_results: int = 2) -> str:
-#     q_emb = embedder.embed(question)
-#     context = vector_store.query(q_emb, n=n_results)
-#     return llm.ask(context, question)
