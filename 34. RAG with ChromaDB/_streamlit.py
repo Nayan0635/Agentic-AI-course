@@ -1,3 +1,4 @@
+# python -m streamlit run _streamlit.py
 import streamlit as st
 from core.rag import answer
 
