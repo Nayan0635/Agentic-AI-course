@@ -15,7 +15,7 @@ __pycache__/
 
 # VS Code
 .vscode/
-**/.vscode/
+**/.vscode/ 
 
 # Media and document files
 documents/
