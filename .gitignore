@@ -13,10 +13,16 @@ output/
 __pycache__/
 *.py[cod]
 
+# VS Code
+.vscode/
+**/.vscode/
+
 # Media and document files
+documents/
 *.png
 *.jpg
 *.jpeg
+*.txt 
 *.pdf
 *.csv
 *.xlsx
@@ -31,6 +37,6 @@ __pycache__/
 14.*/
 28.*
 28.*/
-33. _tutorial/
 
-*.txt 
+
+
