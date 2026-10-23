@@ -11,7 +11,7 @@ llm = ChatNVIDIA(
     model = "meta/muse-glimmer-30b",
 )
 
-llm.bind_tools([sendMail])
+llm = llm.bind_tools([sendMail])
 
 while True:
     user_input = input("Ask: ")
