@@ -1,0 +1,40 @@
+-- database: ./studentsDB.sqlite3
+
+---create table students
+create table students(
+    student_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name text not null,
+    email text not null unique,
+    created date default CURRENT_DATE
+);
+--insert few values
+insert into students(name,email)values('John Doe','john.doe@gmail.com');
+insert into students(name,email)values('Diana Doe','diana.doe@gmail.com');
+
+
+create table courses(
+    course_id integer primary key AUTOINCREMENT,
+    course_name text not null,
+    course_duration text not null,
+    course_fees float not null check(course_fees>=5000),
+    student_id int,
+    FOREIGN KEY(student_id) REFERENCES students(student_id)
+    on delete CASCADE
+    on update CASCADE
+);
+---insert few values
+insert into courses(course_name,course_fees,course_duration,student_id)
+values('React',12000,'3 Months',1);
+
+insert into courses(course_name,course_fees,course_duration,student_id)
+values('Python',22000,'6 Months',2);
+
+---getting values from both of the table
+---getting students by their courses
+select s.name,
+       s.email,
+       c.course_name,
+       c.course_duration,
+       c.course_fees
+       from students s inner join courses c
+       on(s.student_id = c.student_id);

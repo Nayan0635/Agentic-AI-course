@@ -1,6 +1,10 @@
+# Environment variables & secrets
 .env
+.env.*
+!.env.example
+
 private/
-Claude/ 
+
 
 # C/C++ output and binaries
 output/
@@ -9,13 +13,18 @@ output/
 *.o
 *.obj
 
-# Python cache
+# Python cache & bytecode
 __pycache__/
 *.py[cod]
+*$py.class
+*.so
 
-# VS Code
+# IDE & Editor files
 .vscode/
 **/.vscode/ 
+.idea/
+*.swp
+*.swo
 
 # Media and document files
 documents/
@@ -28,7 +37,7 @@ documents/
 *.xlsx
 *.docx
 
-# database
+# vector database
 **/chromaDB*/
 **/faissDB*/
 
@@ -39,4 +48,4 @@ documents/
 28.*/
 
 
-
+test.py

@@ -23,14 +23,14 @@ embeddings = OpenAIEmbeddings(
     api_key=os.getenv("OPENAI_API_KEY"),
     model="text-embedding-3-small"
 )
-text_splitters = RecursiveCharacterTextSplitter(
+splitter = RecursiveCharacterTextSplitter(
     chunk_size=500,
-    chunk_overlap=50
+    chunk_overlap=50,
 )
 #Chunks creation.
 documents=[]
 for doc in all_documents:
-    chunk=text_splitters.split_text(doc)
+    chunk=splitter.split_text(doc)
     documents.extend(chunk)
 
 vector_store = FAISS.from_texts(
@@ -38,5 +38,5 @@ vector_store = FAISS.from_texts(
     embeddings
 )
 #Store locally
-vector_store.save_local(folder_path="./vectorstore")
+vector_store.save_local(folder_path="./faissDB")
 # print("Local Vector Database is created successfully")

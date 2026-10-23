@@ -21,11 +21,7 @@ server = StdioServerParameters(
 print("MCP server is connected")
 
 async def callAgent():
-#     async with stdio_client(server) as (read,write):
-#         async with ClientSession(read,write) as session:
     async with Client(server) as session:
-            #intialize all sessions. --> don't need anymore
-        # await session.initialize()
         #getting all tools from mcp server.
         tools = await session.list_tools()
         print("Available tools:")
@@ -38,7 +34,6 @@ async def callAgent():
                 "function":{
                     "name":tool.name,
                     "description":tool.description,
-                    # "parameters":tool.inputSchema
                     "parameters":tool.input_schema
                 }
             })
@@ -80,4 +75,4 @@ async def callAgent():
 
 if __name__ == "__main__":
     # asyncio.run(main=callAgent())
-    asyncio.run(main=callAgent())
+    asyncio.run(callAgent())
